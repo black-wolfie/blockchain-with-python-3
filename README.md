@@ -1,7 +1,7 @@
 # blockchain-with-python-3
 Statistical analysis of blockchains with python 3.6, a free and open software
 
-PGP fingerprint: f06c737b4b0e03353f814567b589b5e06bdf3c98
+PGP fingerprint: F06C737B4B0E03353F814567B589B5E06BDF3C98
 
 
 

@@ -1,0 +1,30 @@
+# automatically hashes n most recently modified files within the directory using SHA2-256 (n is an integer)
+# use "from sha2 import sha2" to load up, type sha2(3) to hash three most recently modified files
+
+def sha2(n):
+    import hashlib
+    import os
+    from glob import glob
+    
+    BLOCKSIZE = 65536
+    
+    h_sha256 = hashlib.sha256()
+    
+    # get all the file names, sort them in the order of date_modified
+    files = glob("*.*")
+    files.sort(key=os.path.getmtime)
+    files = files[::-1]
+    
+    for x in range(0,n):
+        h_sha256 = hashlib.sha256()
+        
+        with open(files[x], 'rb') as afile:
+            buf = afile.read(BLOCKSIZE)
+            
+            while len(buf) > 0:
+                h_sha256.update(buf)
+                buf = afile.read(BLOCKSIZE)
+
+        print("SHA2-256 hash of", files[x], ":")
+        print(h_sha256.hexdigest())
+        print("")

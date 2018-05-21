@@ -1,3 +1,5 @@
+# GUI code for finding SHA3-256 hashes for a file, can accept more than 1 file at a time.
+
 from tkinter import Tk, Label, Button
 import hashlib
 from tkinter.filedialog import askopenfilenames

@@ -12,8 +12,7 @@ def OpenFile():
                                         (".exe Files","*.exe"),
                                         (".txt File", "*.txt")),
                              title = "Choose files to apply SHA2-256 hashing")
-    sha256_tb = sha2_gui_func(files)
-    return sha256_tb
+    sha2_gui_func(files)
 
 # sha2 hashing algorithm, outputs hash functions
 def sha2_gui_func(files):
@@ -27,6 +26,7 @@ def sha2_gui_func(files):
     lb2.grid(row=4, column=2) 
     sha256_tb = pd.DataFrame([])
     
+    sha2_file = open((os.path.dirname(files[0]) + "/" + "sha256sum.txt"),'w')
     for x in range(0,n):
         h_sha256 = hashlib.sha256()
         with open(files[x], 'rb') as afile:
@@ -55,7 +55,11 @@ def sha2_gui_func(files):
         lb_hash = Label(window_1, text = h_sha256.hexdigest(), 
                         font = ("Consolas", 10))
         lb_hash.grid(sticky="E", row = x + 5, column = 2)
-    return sha256_tb
+        
+        sha2_file.write(h_sha256.hexdigest() + "  " + 
+                        os.path.basename(files[x]) + '\n')
+
+    sha2_file.close
 
 # setup the main window_1
 window_1 = Tk()

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # for Python 3!
+# original Python 2 file: https://github.com/stequald/bitcoin-sign-message/blob/master/signmessage.py
 # usages:
 """
 import BTC_vef_P2PKH as bv

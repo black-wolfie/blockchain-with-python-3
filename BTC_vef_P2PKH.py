@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# for Python 3!
 # usages:
 """
 import BTC_vef_P2PKH as bv

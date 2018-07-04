@@ -3,7 +3,7 @@
 # original Python 2 file: https://github.com/stequald/bitcoin-sign-message/blob/master/signmessage.py
 # usages:
 """
-import BTC_vef_P2PKH as bv
+import BTC_P2PKH_sigvef as bv
 
 address = '16vqGo3KRKE9kTsTZxKoJKLzwZGTodK3ce'
 signature = ('HPDs1TesA48a9up4QORIuub67VHBM37X66skAYz0Esg23gdfMu'+

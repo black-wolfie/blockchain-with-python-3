@@ -1,5 +1,7 @@
-# GUI for a sha2-256 hasher
-# This GUI also outputs a "sha256sum.txt" file of the selected files, which could be verified by a GPG client.
+# -*- coding: utf-8 -*-
+"""
+Created on Sat May 19 12:00:31 2018
+"""
 from tkinter import Tk, Label, Button
 import hashlib
 from tkinter.filedialog import askopenfilenames

@@ -3,6 +3,8 @@
 Created on Wed Jul  4 19:55:48 2018
 """
 
+# verifying Ethereum signed messages!
+
 import ecdsa
 import base64
 import hashlib
@@ -76,23 +78,7 @@ def modular_sqrt(a, p):
     n = 2
     while legendre_symbol(n, p) != -1:
         n += 1
-        
-    # Here be dragons!
-    # Read the paper "Square roots from 1; 24, 51,
-    # 10 to Dan Shanks" by Ezra Brown for more
-    # information
-    #
-    
-    # x is a guess of the square root that gets better
-    # with each iteration.
-    # b is the "fudge factor" - by how much we're off
-    # with the guess. The invariant x^2 = ab (mod p)
-    # is maintained throughout the loop.
-    # g is used for successive powers of n to update
-    # both a and b
-    # r is the exponent - decreases with each update
-    #
-    
+
     print("s is", s)
     x = pow(a, (s + 1) // 2, p)
     b = pow(a, s, p)
@@ -125,9 +111,7 @@ def legendre_symbol(a, p):
     Returns 1 if a has a square root modulo
     p, -1 otherwise.
     """
-#    print("a is ", a)
-#    print("divide by 2 is", (p - 1) / 2)
-#    print("p is ", p)
+
     ls = pow(a, (p - 1) // 2, p)
     return -1 if ls == p - 1 else ls
 
@@ -144,9 +128,7 @@ def encode_point(pubkey, compressed=False):
     p = pubkey.pubkey.point
     x_str = ecdsa.util.number_to_string(p.x(), order)
     y_str = ecdsa.util.number_to_string(p.y(), order)
-#    print("x_str is", x_str)
-#    print("y_str_is", y_str)
-    
+
     if compressed:
         return chr(2 + (p.y() & 1)).encode() + x_str
     else:
@@ -164,12 +146,7 @@ def sig_vef_P2PKH(address, signature, message):
     sig = base64.b64decode(signature)
     if len(sig) != 65: raise BaseException("Wrong encoding")
     r,s = util.sigdecode_string(sig[1:], order)
-    
-    #    print(sig)
-    #    print(len(sig))
-    #    print(sig[0])
-    #    nV = ord(sig[0])
-    
+   
     nV = sig[0]
     
     if nV < 27 or nV >= 35:
@@ -190,18 +167,10 @@ def sig_vef_P2PKH(address, signature, message):
     beta = modular_sqrt(alpha, curve.p())
     y = beta if (beta - recid) % 2 == 0 else curve.p() - beta
     
-    #    print('alpha is ', alpha)
-    #    print('beta is ', beta)
-    #    print('')
-    #    print('y is ', y)
-    
     # 1.4 the constructor checks that nR is at infinity
     R = ellipticcurve.Point(curve, x, y, order)
     
     # 1.5 compute e from message:
-#    a_1 = msg_magic( message )
-#    print(msg_magic( message ))
-    
     h = Hash( msg_magic( message ) )
     e = string_to_number(h)
     minus_e = -e % order

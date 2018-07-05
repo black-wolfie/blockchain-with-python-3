@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# for Python 3!
-# original Python 2 file: https://github.com/stequald/bitcoin-sign-message/blob/master/signmessage.py
+# Verifying BTC messages for Python 3!
+# original Python 2 file: 
+# https://github.com/stequald/bitcoin-sign-message/blob/master/signmessage.py
 # usages:
 """
 import BTC_P2PKH_sigvef as bv

@@ -1,33 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul  5 00:15:56 2018
-"""
-
-# encode code
-def rlp_encode(input):
-    if isinstance(input,str):
-        if len(input) == 1 and ord(input) < 0x80: return input
-        else: return encode_length(len(input), 0x80) + input
-    elif isinstance(input,list):
-        output = ''
-        for item in input: output += rlp_encode(item)
-        return encode_length(len(output), 0xc0) + output
-
-def encode_length(L,offset):
-    if L < 56:
-         return chr(L + offset)
-    elif L < 256**8:
-         BL = to_binary(L)
-         return chr(len(BL) + offset + 55) + BL
-    else:
-         raise Exception("input too long")
-
-def to_binary(x):
-    if x == 0:
-        return ''
-    else: 
-        return to_binary(int(x / 256)) + chr(x % 256)
-
 from collections import Iterable, Sequence
 
 from .codec import consume_length_prefix, consume_payload
@@ -37,15 +7,18 @@ from .atomic import Atomic
 
 def decode_lazy(rlp, sedes=None, **sedes_kwargs):
     """Decode an RLP encoded object in a lazy fashion.
+
     If the encoded object is a bytestring, this function acts similar to
     :func:`rlp.decode`. If it is a list however, a :class:`LazyList` is
     returned instead. This object will decode the string lazily, avoiding
     both horizontal and vertical traversing as much as possible.
+
     The way `sedes` is applied depends on the decoded object: If it is a string
     `sedes` deserializes it as a whole; if it is a list, each element is
     deserialized individually. In both cases, `sedes_kwargs` are passed on.
     Note that, if a deserializer is used, only "horizontal" but not
     "vertical lazyness" can be preserved.
+
     :param rlp: the RLP string to decode
     :param sedes: an object implementing a method ``deserialize(code)`` which
                   is used as described above, or ``None`` if no
@@ -70,8 +43,10 @@ def decode_lazy(rlp, sedes=None, **sedes_kwargs):
 
 def consume_item_lazy(rlp, start):
     """Read an item from an RLP string lazily.
+
     If the length prefix announces a string, the string is read; if it
     announces a list, a :class:`LazyList` is created.
+
     :param rlp: the rlp string to read from
     :param start: the position at which to start reading
     :returns: a tuple ``(item, end)`` where ``item`` is the read string or a
@@ -88,9 +63,11 @@ def consume_item_lazy(rlp, start):
 
 class LazyList(Sequence):
     """A RLP encoded list which decodes itself when necessary.
+
     Both indexing with positive indices and iterating are supported.
     Getting the length with :func:`len` is possible as well but requires full
     horizontal encoding.
+
     :param rlp: the rlp string in which the list is encoded
     :param start: the position of the first payload byte of the encoded list
     :param end: the position of the last payload byte of the encoded list
@@ -159,14 +136,18 @@ class LazyList(Sequence):
 
 def peek(rlp, index, sedes=None):
     """Get a specific element from an rlp encoded nested list.
+
     This function uses :func:`rlp.decode_lazy` and, thus, decodes only the
     necessary parts of the string.
+
     Usage example::
+
         >>> rlpdata = rlp.encode([1, 2, [3, [4, 5]]])
         >>> rlp.peek(rlpdata, 0, rlp.sedes.big_endian_int)
         1
         >>> rlp.peek(rlpdata, [2, 0], rlp.sedes.big_endian_int)
         3
+
     :param rlp: the rlp string
     :param index: the index of the element to peek at (can be a list for
                   nested data)

@@ -4,6 +4,7 @@ Created on Wed Jul  4 19:55:48 2018
 """
 
 # verifying Ethereum signed messages!
+# not finished
 
 import ecdsa
 import base64

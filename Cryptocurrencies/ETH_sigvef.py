@@ -115,9 +115,6 @@ def legendre_symbol(a, p):
     ls = pow(a, (p - 1) // 2, p)
     return -1 if ls == p - 1 else ls
 
-__b58chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
-__b58base = len(__b58chars)
-
 
 def msg_magic(message):
     return "\x19Ethereum Signed Message:\n" + chr( len(message) ) + message

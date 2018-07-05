@@ -97,22 +97,6 @@ def modular_sqrt(a, p):
     n = 2
     while legendre_symbol(n, p) != -1:
         n += 1
-        
-    # Here be dragons!
-    # Read the paper "Square roots from 1; 24, 51,
-    # 10 to Dan Shanks" by Ezra Brown for more
-    # information
-    #
-    
-    # x is a guess of the square root that gets better
-    # with each iteration.
-    # b is the "fudge factor" - by how much we're off
-    # with the guess. The invariant x^2 = ab (mod p)
-    # is maintained throughout the loop.
-    # g is used for successive powers of n to update
-    # both a and b
-    # r is the exponent - decreases with each update
-    #
     
     print("s is", s)
     x = pow(a, (s + 1) // 2, p)
@@ -146,9 +130,7 @@ def legendre_symbol(a, p):
     Returns 1 if a has a square root modulo
     p, -1 otherwise.
     """
-#    print("a is ", a)
-#    print("divide by 2 is", (p - 1) / 2)
-#    print("p is ", p)
+
     ls = pow(a, (p - 1) // 2, p)
     return -1 if ls == p - 1 else ls
 
@@ -198,23 +180,15 @@ def hash_160(public_key):
     md.update(hashlib.sha256(public_key).digest())
     return md.digest()
 
-#def hash_160_to_bc_address(h160):
-#    vh160 = chr(addrtype) + h160
-#    h = Hash(vh160)
-#    addr = vh160 + h[0:4]
-#    return b58encode(addr)
-
 def public_key_to_bc_address(public_key):
     h160 = hash_160(public_key)
-#    print(h160)
     vh160 = chr(addrtype).encode() + h160
     
     hash_1st = hashlib.sha256(vh160).digest()
     hash_2nd = hashlib.sha256(hash_1st).digest()
     
     addr = vh160 + hash_2nd[0:4]
-#    print(vh160)
-#    print(hash_2nd)
+
     
     return b58encode(addr)
 
@@ -223,42 +197,11 @@ def encode_point(pubkey, compressed=False):
     p = pubkey.pubkey.point
     x_str = ecdsa.util.number_to_string(p.x(), order)
     y_str = ecdsa.util.number_to_string(p.y(), order)
-#    print("x_str is", x_str)
-#    print("y_str_is", y_str)
     
     if compressed:
         return chr(2 + (p.y() & 1)).encode() + x_str
     else:
         return chr(4).encode() + x_str + y_str
-    
-#    if compressed:
-#        return chr(2 + (p.y() & 1)) + x_str
-#    else:
-#        return chr(4) + x_str + y_str
-
-#def sign_message(private_key, message, compressed=False):
-#    
-#    public_key = private_key.get_verifying_key()
-#    signature = private_key.sign_digest( Hash( msg_magic( message ) ), 
-#                                        sigencode = ecdsa.util.sigencode_string )
-#    address = public_key_to_bc_address(encode_point(public_key, compressed))
-#    
-#    assert public_key.verify_digest( signature, Hash( msg_magic( message ) ), 
-#                                    sigdecode = ecdsa.util.sigdecode_string)
-#    for i in range(4):
-#        nV = 27 + i
-#        if compressed:
-#            nV += 4
-#        sig = base64.b64encode( chr(nV) + signature )
-#        try:
-#            if verify_message( address, sig, message):
-#                return sig
-#        except:
-#            continue
-#    else:
-#        raise BaseException("error: cannot sign message")
-
-
 
 def sig_vef_P2PKH(address, signature, message):
     """ See http://www.secg.org/download/aid-780/sec1-v2.pdf for the math """
@@ -271,11 +214,6 @@ def sig_vef_P2PKH(address, signature, message):
     sig = base64.b64decode(signature)
     if len(sig) != 65: raise BaseException("Wrong encoding")
     r,s = util.sigdecode_string(sig[1:], order)
-    
-    #    print(sig)
-    #    print(len(sig))
-    #    print(sig[0])
-    #    nV = ord(sig[0])
     
     nV = sig[0]
     
@@ -296,11 +234,6 @@ def sig_vef_P2PKH(address, signature, message):
     alpha = ( x * x * x  + curve.a() * x + curve.b() ) % curve.p()
     beta = modular_sqrt(alpha, curve.p())
     y = beta if (beta - recid) % 2 == 0 else curve.p() - beta
-    
-    #    print('alpha is ', alpha)
-    #    print('beta is ', beta)
-    #    print('')
-    #    print('y is ', y)
     
     # 1.4 the constructor checks that nR is at infinity
     R = ellipticcurve.Point(curve, x, y, order)

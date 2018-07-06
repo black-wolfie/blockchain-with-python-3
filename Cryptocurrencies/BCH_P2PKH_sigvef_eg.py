@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Jul  2 21:46:19 2018
+By Wolfie
 """
 import BCH_P2PKH_sigvef as bs0
 

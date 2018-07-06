@@ -65,10 +65,11 @@ def public_key_to_bc_address(public_key):
     h160 = hash_160(public_key)
     vh160 = chr(addrtype).encode() + h160
     
+    # checksum is the last 4 bytes of the double SHA256 hash
     hash_1st = hashlib.sha256(vh160).digest()
     hash_2nd = hashlib.sha256(hash_1st).digest()
-    
     addr = vh160 + hash_2nd[0:4]
+    
     return b58encode(addr)
 
 def encode_point(pubkey, compressed=False):

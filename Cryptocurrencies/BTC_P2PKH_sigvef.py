@@ -45,7 +45,7 @@ Gy_US = 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8
 
 curve_secp256k1 = ecdsa.ellipticcurve.CurveFp( p_US, a_US, b_US )
 
-generator_secp256k1 = ecdsa.ellipticcurve.Point( curve_secp256k1, Gx_US, 
+generator_secp256k1 = ecdsa.ellipticcurve.Point(curve_secp256k1, Gx_US, 
                                                 Gy_US, r_US )
 
 oid_secp256k1 = (1,3,132,0,10)
@@ -118,9 +118,6 @@ def sig_vef_P2PKH(address, signature, message):
     R = ellipticcurve.Point(curve, x, y, order)
     
     # 1.5 compute e from message:
-#    a_1 = msg_magic( message )
-#    print(msg_magic( message ))
-    
     h = Hash( msg_magic( message ) )
     e = string_to_number(h)
     minus_e = -e % order
@@ -132,14 +129,17 @@ def sig_vef_P2PKH(address, signature, message):
     public_key = ecdsa.VerifyingKey.from_public_point( Q, curve = SECP256k1 )
     
     # check that Q is the public key
-    public_key.verify_digest( sig[1:], h, sigdecode = ecdsa.util.sigdecode_string)
+    public_key.verify_digest(sig[1:], h, 
+                             sigdecode = ecdsa.util.sigdecode_string)
     
     # check that we get the original signing address
     addr = public_key_to_bc_address(encode_point(public_key, compressed))
+    addr = "bitcoin:" + addr
     
-    print("")
+    if address[0:8] != "bitcoin:":
+        address = "bitcoin:" + address
     
-    if address == ('1' + addr):
+    if address == addr:
         print('The signature is valid')
     else:
-        print('The signature is not valid')
+        print('The signature is NOT valid')

@@ -5,7 +5,8 @@ Created on Wed Jul  4 22:46:11 2018
 
 import BTC_P2PKH_sigvef as bv
 
-address = '16vqGo3KRKE9kTsTZxKoJKLzwZGTodK3ce'
+# verifying two P2PKH Bitcoin signed messages
+address = 'bitcoin:16vqGo3KRKE9kTsTZxKoJKLzwZGTodK3ce'
 signature = ('HPDs1TesA48a9up4QORIuub67VHBM37X66skAYz0Esg23gdfMu'+
         'CTYDFORc6XGpKZ2/flJ2h/DUF569FJxGoVZ50=')
 message = 'test message'

@@ -139,7 +139,7 @@ def sig_vef_P2PKH(address, signature, message):
     
     if address[0:8] != "bitcoin:":
         address = "bitcoin:" + address
-    
+    print("")
     if address == addr:
         print('The signature is valid')
     else:

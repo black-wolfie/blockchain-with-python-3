@@ -81,7 +81,8 @@ def sig_vef_P2PKH(address, signature, message):
     public_key = ecdsa.VerifyingKey.from_public_point( Q, curve = SECP256k1 )
     
     # check that Q is the public key
-    public_key.verify_digest( sig[1:], h, sigdecode = ecdsa.util.sigdecode_string)
+    public_key.verify_digest( sig[1:], h, sigdecode = 
+                             ecdsa.util.sigdecode_string)
     
     # check that we get the original signing address
     addr = public_key_to_Cash_Addr(encode_point(public_key, compressed))

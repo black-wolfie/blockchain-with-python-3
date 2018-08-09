@@ -72,6 +72,7 @@ def public_key_to_bc_address(public_key):
     
     return b58encode(addr)
 
+
 def encode_point(pubkey, compressed=False):
     order = generator_secp256k1.order()
     p = pubkey.pubkey.point
@@ -144,3 +145,6 @@ def sig_vef_P2PKH(address, signature, message):
         print('The signature is valid')
     else:
         print('The signature is NOT valid')
+
+#%%
+        

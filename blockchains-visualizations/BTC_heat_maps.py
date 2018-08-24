@@ -6,13 +6,21 @@ from datetime import date, timedelta, datetime
 
 def main():
     sns.set(color_codes=True)
-    this_month = 
-    #url_string2 =  ('https://api.blockchair.com/bitcoin/blocks'+
-    #                '?q=time(2018-01-01+00:00:00..)'+
-    #                '#f=id,time,transaction_count,fee_total,size&export=csv')
+    t0 = date.today()
+    t_today = t0
+    
+    for i in range(4):
+        t1 = t0.replace(day=1)
+        t2 = t1 - timedelta(days=1)
+        t0 = t2 
+    t0 = t0.replace(day=1)
+    
+    All_months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    All_months2 = All_months + All_months + All_months
+    All_months3 = All_months2[(12 + t_today.month - 5) : (24 + t_today.month - 5)]
     
     url_string_3 = ('https://api.blockchair.com/bitcoin/blocks?'+
-                    'q=time(2018-01-01+00:00:00..)'+
+                    'q=time('+str(t0)+'+00:00:00..)'+
                     '&u=33c716b7-cf65-4b3b-8784-7f229f30e8cc&'+
                     'fields=id,time,transaction_count,input_count,size&export=csv')
     
@@ -37,10 +45,8 @@ def main():
     # pivoting for block size in kB
     Table_BTC_4 = Table_BTC_3.pivot(index='Month', columns='Day', values='size_kB')
     
-    All_months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct',
-                  'Nov','Dec']
     
-    Table_BTC_4.index = [list(zip(Table_BTC_4.index,All_months))[x][1] 
+    Table_BTC_4.index = [list(zip(Table_BTC_4.index, All_months3))[x][1] 
                          for x in range(0,len(Table_BTC_4))]
     
     Table_BTC_4 = Table_BTC_4.round(0)
@@ -55,12 +61,10 @@ def main():
     Table_BTC_5 = Table_BTC_3.pivot(index='Month', columns='Day', 
                                     values='transaction_count')
     
-    All_months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct',
-                  'Nov','Dec']
+
     
-    Table_BTC_5.index = [list(zip(Table_BTC_5.index,All_months))[x][1] 
+    Table_BTC_5.index = [list(zip(Table_BTC_5.index,All_months3))[x][1] 
                          for x in range(0,len(Table_BTC_5))]
-    
     Table_BTC_5 = Table_BTC_5.round(0)
     
     sns.heatmap(Table_BTC_5, annot=True, fmt='g', linewidths=0.2, 
@@ -73,10 +77,8 @@ def main():
     Table_BTC_6 = Table_BTC_3.pivot(index='Month', columns='Day', 
                                     values='input_count')
     
-    All_months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct',
-                  'Nov','Dec']
     
-    Table_BTC_6.index = [list(zip(Table_BTC_6.index,All_months))[x][1] 
+    Table_BTC_6.index = [list(zip(Table_BTC_6.index,All_months3))[x][1] 
                          for x in range(0,len(Table_BTC_5))]
     
     Table_BTC_6 = Table_BTC_6.round(0)

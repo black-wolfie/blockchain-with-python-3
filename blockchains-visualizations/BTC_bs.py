@@ -49,52 +49,52 @@ def main():
                         hspace=0.285, wspace=0.383)
     
     # subplot 1
-    axarr[0,0].set_title('Mean block size of every adjac. 21 blks vs.'
+    axarr[(0,0)].set_title('Mean block size of every adjac. 21 blks vs.'
                            +'block height',fontsize=10)
     
     # Two curves on the same plot
-    axarr[0,0].plot(Table_BTC_1.Height,Table_BTC_1.size_mean21/1e3,
+    axarr[(0,0)].plot(Table_BTC_1.Height,Table_BTC_1.size_mean21/1e3,
                   linewidth=1.2, color='blue')
-    axarr[0,0].plot([min(Table_BTC_1.Height)-1e3, max(Table_BTC_1.Height)+1e3],
+    axarr[(0,0)].plot([min(Table_BTC_1.Height)-1e3, max(Table_BTC_1.Height)+1e3],
                   [1000, 1000],'r:',linewidth=0.7)
     
-    axarr[0,0].set_xlim(min(Table_BTC_1.Height),max(Table_BTC_1.Height))
-    axarr[0,0].set_ylim(0, max(Table_BTC_1.size_mean21/1e3)*1.2)
-    axarr[0,0].set_ylabel('block size in kB')
-    axarr[0,0].set_xlabel('block height')
+    axarr[(0,0)].set_xlim(min(Table_BTC_1.Height),max(Table_BTC_1.Height))
+    axarr[(0,0)].set_ylim(0, max(Table_BTC_1.size_mean21/1e3)*1.2)
+    axarr[(0,0)].set_ylabel('block size in kB')
+    axarr[(0,0)].set_xlabel('block height')
     
     #%% Subplot 2
     # block height vs. total fee per block, BTC
-    axarr[0,1].set_title('Total Bitcoin fee per block',fontsize=10)
-    axarr[0,1].set_ylabel('Fees in BTC')
-    axarr[0,1].set_xlabel('block height')
-    axarr[0,1].plot(Table_BTC_1['Height'],
+    axarr[(0,1)].set_title('Total Bitcoin fee per block',fontsize=10)
+    axarr[(0,1)].set_ylabel('Fees in BTC')
+    axarr[(0,1)].set_xlabel('block height')
+    axarr[(0,1)].plot(Table_BTC_1['Height'],
                     Table_BTC_1['fee_total']/1e8,'b.',markersize=5)
     
     #%% Subplot 3, using Seaborn
-    sns.distplot(Table_BTC_1['fee_total']/1e8, kde = True, ax = axarr[0,2],
+    sns.distplot(Table_BTC_1['fee_total']/1e8, kde = True, ax = axarr[(0,2)],
                  bins=40)
     
     #axarr[0,2].set_title('Distribution of miner fee per block',fontsize=10)
-    axarr[0,2].set_ylabel('block count')
-    axarr[0,2].set_xlabel('miner fee per block')
+    axarr[(0,2)].set_ylabel('block count')
+    axarr[(0,2)].set_xlabel('miner fee per block')
     
     #%% Subplot 4, using Seaborn
-    sns.distplot(Table_BTC_1['Txn'], kde = False, ax = axarr[1,0],
+    sns.distplot(Table_BTC_1['Txn'], kde = False, ax = axarr[(1,0)],
                  color='m', bins=40)
     
     #axarr[1,0].set_title('Txns per block',fontsize=10)
-    axarr[1,0].set_ylabel('block count')
-    axarr[1,0].set_xlabel('transaction counts')
+    axarr[(1,0)].set_ylabel('block count')
+    axarr[(1,0)].set_xlabel('transaction counts')
     
     #%% Subplot 5, using Seaborn, query non-empty blks first
     NonEmptyBlks = Table_BTC_1['size_B'].loc[Table_BTC_1['Txn'] != 1]
-    sns.distplot(NonEmptyBlks/1e3, kde = False, ax = axarr[1,1],
+    sns.distplot(NonEmptyBlks/1e3, kde = False, ax = axarr[(1,1)],
                  color='g', bins=40)
     
     #axarr[1,0].set_title('Txns per block',fontsize=10)
-    axarr[1,1].set_ylabel('block count')
-    axarr[1,1].set_xlabel('distribution of block size, kB')
+    axarr[(1,1)].set_ylabel('block count')
+    axarr[(1,1)].set_xlabel('distribution of block size, kB')
     
     #%% Subplot 6, some stats
     yp = [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2]
@@ -125,15 +125,15 @@ def main():
                    str(np.max(Table_BTC_1.size_B)/1e3)]
     
     for k, StatsTexts in enumerate(StatsTexts):
-        t = axarr[1,2].text(0+0.1,   yp[k]-0.1, StatsTexts, 
+        t = axarr[(1,2)].text(0+0.1,   yp[k]-0.1, StatsTexts, 
                             family='calibri', **alignment)
     
     for k, StatsTexts in enumerate(StatsTexts2): 
-        t = axarr[1,2].text(0.8+0.1, yp[k]-0.1, StatsTexts2[k], 
+        t = axarr[(1,2)].text(0.8+0.1, yp[k]-0.1, StatsTexts2[k], 
                             family='calibri', **alignment2)
-    axarr[1,2].grid(False)
-    plt.setp(axarr[1,2].get_xticklabels(), visible=False)
-    plt.setp(axarr[1,2].get_yticklabels(), visible=False)
+    axarr[(1,2)].grid(False)
+    plt.setp(axarr[(1,2)].get_xticklabels(), visible=False)
+    plt.setp(axarr[(1,2)].get_yticklabels(), visible=False)
     #%%
     FMT = '%Y-%m-%d %H:%M:%S'
     
@@ -142,18 +142,18 @@ def main():
     del_t3 = [del_t2[n] - del_t2[n-1] for n in range(1,len(del_t2))]
     del_t3 = [x for x in del_t3 if abs(x) <= 7200]
     
-    sns.distplot(del_t3,kde = False, ax = axarr[0,3], color='g', bins=30)
+    sns.distplot(del_t3,kde = False, ax = axarr[(0,3)], color='g', bins=30)
     
     #axarr[0,3].set_xlim(0,3600)
-    axarr[0,3].set_ylabel('block count')
-    axarr[0,3].set_xlabel('distribution of time between blocks')
+    axarr[(0,3)].set_ylabel('block count')
+    axarr[(0,3)].set_xlabel('distribution of time between blocks')
     
     #%% bar plot distribution of mining blocks
     mine_index = Table_BTC_1['guessed_miner'].value_counts().index
     sns.countplot(x = 'guessed_miner', data = Table_BTC_1, 
-                  order = mine_index, ax = axarr[1,3]);
-    axarr[1,3].set_ylabel("block count")
-    axarr[1,3].set_xlabel("")
+                  order = mine_index, ax = axarr[(1,3)]);
+    axarr[(1,3)].set_ylabel("block count")
+    axarr[(1,3)].set_xlabel("")
     
     #%% Set xtick/ytick sizes, for all subplots
     plt.setp([a.get_xticklabels() for a in fig.axes[:]], fontsize=8,
@@ -170,18 +170,18 @@ def main():
     
     # Plot the orbital period with horizontal boxes
     sns.boxplot(x="weight_MB", y="guessed_miner", data = Table_BTC_1, 
-                palette = "coolwarm", ax = ax_BTC_2[0],
+                palette = "coolwarm", ax = ax_BTC_2[(0)],
                 order = mine_index)
     
     # Add in points to show each observation
     sns.swarmplot(x = "weight_MB", y = "guessed_miner", data = Table_BTC_1,
-                  size=2, color=".3", linewidth=0, ax = ax_BTC_2[0],
+                  size=2, color=".3", linewidth=0, ax = ax_BTC_2[(0)],
                   order = mine_index)
     
     # Tweak the visual presentation
-    ax_BTC_2[0].set_ylabel("")
-    ax_BTC_2[0].set_xlabel("weight (MB)")
-    ax_BTC_2[0].xaxis.grid(True)
+    ax_BTC_2[(0)].set_ylabel("")
+    ax_BTC_2[(0)].set_xlabel("weight (MB)")
+    ax_BTC_2[(0)].xaxis.grid(True)
     sns.despine(trim=True, left=True)
     
     # miner stats breakdown, block size
@@ -189,17 +189,17 @@ def main():
     
     # Plot the orbital period with horizontal boxes
     sns.boxplot(x="size_MB", y="guessed_miner", data = Table_BTC_1, 
-                palette = "coolwarm", ax = ax_BTC_2[1],
+                palette = "coolwarm", ax = ax_BTC_2[(1)],
                 order = mine_index)
     
     # Add in points to show each observation
     sns.swarmplot(x = "size_MB", y = "guessed_miner", data = Table_BTC_1,
-                  size=2, color=".3", linewidth=0, ax = ax_BTC_2[1],
+                  size=2, color=".3", linewidth=0, ax = ax_BTC_2[(1)],
                   order = mine_index)
     
-    ax_BTC_2[1].set_ylabel("")
-    ax_BTC_2[1].set_xlabel("block size (MB)")
-    ax_BTC_2[1].xaxis.grid(True)
+    ax_BTC_2[(1)].set_ylabel("")
+    ax_BTC_2[(1)].set_xlabel("block size (MB)")
+    ax_BTC_2[(1)].xaxis.grid(True)
     plt.xticks(np.arange(0, np.around(Table_BTC_1['size_MB'].max()), step=0.2))
     
     sns.despine(trim=True, left=True)

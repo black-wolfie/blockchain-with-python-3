@@ -11,3 +11,7 @@
 - ```BTC_P2PKH_sigvef_eg.py```	Bitcoin signature verification file
 
 - ```mod_sqrt.py```	modular square function
+
+- ```b58encode.py``` Base58 encoder
+
+- ```b58decode.py``` Base 58 decoder

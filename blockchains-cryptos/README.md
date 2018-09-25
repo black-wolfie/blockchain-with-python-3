@@ -14,4 +14,4 @@
 
 - ```b58encode.py``` Base58 encoder
 
-- ```b58decode.py``` Base 58 decoder
+- ```b58decode.py``` Base58 decoder

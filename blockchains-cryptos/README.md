@@ -8,7 +8,7 @@
 
 - ```BTC_P2PKH_sigvef.py```	Bitcoin signature verification file
 
-- ```BTC_P2PKH_sigvef_eg.py```	Bitcoin signature verification file
+- ```BTC_P2PKH_sigvef_eg.py```	Bitcoin signature verification file (P2WPKH doesn't work yet)
 
 - ```mod_sqrt.py```	modular square function
 

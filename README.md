@@ -11,9 +11,9 @@ Statistical analysis of blockchains with python 3.6, a free and open software. T
 
 donation addresses:
 
-* BCH	qzdjkeate68u7ru2rvtnqtp0hp60akq4j550uyn7aw
+* bitcoincash:qzdjkeate68u7ru2rvtnqtp0hp60akq4j550uyn7aw
 
-* LTC	MDsxpeSauzPzKfTVVT148FytRQBLUFruCR
+* litecoin:MDsxpeSauzPzKfTVVT148FytRQBLUFruCR
 
-* BTC	36Tj7EJtFNM4yLPqeyps5SkAtBzVNM6ja1
+* bitcoin:36Tj7EJtFNM4yLPqeyps5SkAtBzVNM6ja1
 

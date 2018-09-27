@@ -16,3 +16,5 @@ donation addresses:
 * bitcoincash:qzdjkeate68u7ru2rvtnqtp0hp60akq4j550uyn7aw
 
 * litecoin:MDsxpeSauzPzKfTVVT148FytRQBLUFruCR
+
+* ethereum:0x9C3C53FE2054eE49828178c10524f12e2CAc09F6

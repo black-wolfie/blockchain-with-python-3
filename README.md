@@ -19,4 +19,4 @@ donation addresses:
 
 * ethereum:0x9C3C53FE2054eE49828178c10524f12e2CAc09F6
 
-Telegram support: ```https://t.me/joinchat/DC4Vdg9vmQNXTkQWNZmC_g```
+Telegram support: [https://t.me/joinchat/DC4Vdg9vmQNXTkQWNZmC_g](https://t.me/joinchat/DC4Vdg9vmQNXTkQWNZmC_g)

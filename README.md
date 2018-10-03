@@ -18,3 +18,5 @@ donation addresses:
 * litecoin:MDsxpeSauzPzKfTVVT148FytRQBLUFruCR
 
 * ethereum:0x9C3C53FE2054eE49828178c10524f12e2CAc09F6
+
+Telegram support: ```https://t.me/joinchat/AAAAAEfsGKGIF315FcIGcQ```

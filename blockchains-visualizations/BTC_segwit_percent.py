@@ -7,7 +7,7 @@ import seaborn as sns
 import pandas as pd
 
 def main():
-    segwit_url = ("https://alpha-2.blockchair.com/bitcoin/blocks?fields=id,"+
+    segwit_url = ("https://www.blockchair.com/bitcoin/blocks?fields=id,"+
                   "hash,time,transaction_count,witness_count&q=time(20"+
                   "17-09-01..)&export=csv")
     

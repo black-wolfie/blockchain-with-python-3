@@ -27,8 +27,9 @@ LTC_table_3 = LTC_pool_tables[3]
 
 # manipulations to turn table to useful form
 LTC_tb         = LTC_table_3.dropna(axis = 0, thresh = 3)
-LTC_tb         = LTC_tb.drop([0])
-LTC_tb.columns = LTC_table_3.iloc[0]
+#LTC_tb         = LTC_tb.drop([0])
+LTC_tb         = LTC_tb.iloc[:,:7]
+#LTC_tb.columns = LTC_table_3.iloc[0]
 
 LTC_tb       = LTC_tb.iloc[::-1]
 LTC_tb.index = np.arange(0,len(LTC_tb))

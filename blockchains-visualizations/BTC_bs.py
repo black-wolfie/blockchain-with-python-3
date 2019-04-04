@@ -27,7 +27,16 @@ def main():
     +'witness_count,input_count,fee_total,size,weight&export=csv') 
     
     # Converting .csv into Pandas Dataframe with read_csv
-    Table_BTC_1 = pd.read_csv(url_string,delimiter=',')
+#    Table_BTC_1 = pd.read_csv(url_string, delimiter='t\,', header = 0)
+    Table_BTC_1 = pd.read_csv(url_string, header = None, skiprows = 1,
+                                sep = ',', 
+                                names = ['id', 'hash', 'time', 'guessed_miner', 
+                                         'transaction_count','output_total', 
+                                         'output_total_usd', 'fee_total', 
+                                         'fee_total_usd', 'fee_per_kb_usd', 
+                                         'witness_count', 'input_count', 
+                                         'fee_total.1', 'size', 'weight'])
+    
     Table_BTC_1 = Table_BTC_1.rename(columns={'size': 'size_B',
                                     'id':   'Height',
                                     'transaction_count': 'Txn'})

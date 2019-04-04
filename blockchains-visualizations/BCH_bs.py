@@ -30,7 +30,16 @@ def main():
     
     #%%
     # Converting .csv into Pandas Dataframe with read_csv
-    Table_BCH_2 = pd.read_csv(url_bch_string, delimiter=',')
+    Table_BCH_2 = pd.read_csv(url_bch_string, header = None, skiprows = 1,
+                            sep = ',', 
+                            names = ['id', 'hash', 'time', 'guessed_miner', 
+                                     'transaction_count','output_total', 
+                                     'output_total_usd', 'fee_total', 
+                                     'fee_total_usd', 'fee_per_kb_usd', 
+                                     'witness_count', 'input_count', 
+                                     'fee_total.1', 'size', 'weight'])
+    # Table_BCH_2 = pd.read_csv(url_bch_string, delimiter=',')
+    
     Table_BCH_2 = Table_BCH_2.rename(columns={'size': 'size_B',
                                     'id':   'Height',
                                     'transaction_count': 'Txn'})

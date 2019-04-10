@@ -15,7 +15,8 @@ def main():
         t0 = t2 
     t0 = t0.replace(day=1)
     
-    All_months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    All_months = ['Jan','Feb','Mar','Apr','May','Jun',
+                  'Jul','Aug','Sep','Oct','Nov','Dec']
     All_months2 = All_months + All_months + All_months
     All_months3 = All_months2[(12 + t_today.month - 5) : (24 + t_today.month - 5)]
     
@@ -24,7 +25,11 @@ def main():
                     '&u=33c716b7-cf65-4b3b-8784-7f229f30e8cc&'+
                     'fields=id,time,transaction_count,input_count,size&export=csv')
     
-    Table_BTC_2 = pd.read_csv(url_string_3, delimiter = ',')
+    Table_BTC_2 = pd.read_csv(url_string_3, header = None, 
+                              skiprows = 1, 
+                              sep = ',',
+                              names = ['id', 'time', 'transaction_count',
+                                       'input_count', 'size'])
     
     # grouping
     Table_BTC_2['size_kB'] = [x/1000 for x in Table_BTC_2['size']]

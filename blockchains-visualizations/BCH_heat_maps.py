@@ -24,7 +24,10 @@ def main():
                     '&u=33c716b7-cf65-4b3b-8784-7f229f30e8cc&'+
                     'fields=id,time,transaction_count,input_count,size&export=csv')
     
-    Table_BCH_2 = pd.read_csv(url_string_3, delimiter = ',')
+    Table_BCH_2 = pd.read_csv(url_string_3, header = None, 
+                              skiprows = 1,sep = ',', 
+                              names = ['id','time','transaction_count',
+                                       'input_count','size'])
     
     # grouping
     Table_BCH_2['size_kB'] = [x/1000 for x in Table_BCH_2['size']]

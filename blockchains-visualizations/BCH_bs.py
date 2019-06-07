@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from datetime import date,timedelta
+from datetime import date,timedelta, datetime
 
 def main():
     sns.set(color_codes=True)
@@ -52,7 +52,7 @@ def main():
     
     #%% Plotting everything in 6 subplots (2-by-3).
     
-    fig, axarr = plt.subplots(2, 3, figsize=[13,8])
+    fig, axarr = plt.subplots(2, 4, figsize=[16,8])
     
     # subplot 1
     axarr[0,0].set_title('Mean block size of every adjac. 21 blks vs.'
@@ -109,7 +109,28 @@ def main():
     #axarr[1,0].set_title('Txns per block',fontsize=10)
     axarr[1,1].set_ylabel('block count')
     axarr[1,1].set_xlabel('distribution of block size, kB')
+  
+    #%%
+    FMT = '%Y-%m-%d %H:%M:%S'
     
+    del_t1 = [datetime.strptime(y, FMT) for y in Table_BCH_2['time']]
+    del_t2 = [(z-del_t1[0]).seconds for z in del_t1]
+    del_t3 = [del_t2[n] - del_t2[n-1] for n in range(1,len(del_t2))]
+    del_t3 = [x for x in del_t3 if abs(x) <= 7200]
+    
+    sns.distplot(del_t3,kde = False, ax = axarr[(0,3)], color='g', bins=30)
+    
+    #axarr[0,3].set_xlim(0,3600)
+    axarr[(0,3)].set_ylabel('block count')
+    axarr[(0,3)].set_xlabel('distribution of time between blocks')
+    
+    #%% bar plot distribution of mining blocks
+    mine_index = Table_BCH_2['guessed_miner'].value_counts().index
+    sns.countplot(x = 'guessed_miner', data = Table_BCH_2, 
+                  order = mine_index, ax = axarr[(1,3)]);
+    axarr[(1,3)].set_ylabel("block count")
+    axarr[(1,3)].set_xlabel("")
+
     #%% Subplot 6, some stats
     yp = [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2]
     

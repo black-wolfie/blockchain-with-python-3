@@ -7,21 +7,21 @@ import seaborn as sns
 import pandas as pd
 
 def main():
-    segwit_url = ("https://www.blockchair.com/bitcoin/blocks?fields=id,"+
-                  "hash,time,transaction_count,witness_count&q=time(20"+
-                  "17-09-01..)&export=csv")
+    segwit_url = ("https://api.blockchair.com/bitcoin/blocks?"+
+                  "fields=id,transaction_count,witness_count&q"+
+                  "=time(2019-01-01..)&export=csv")
     
-    
-    Table_segwit = pd.read_csv(segwit_url, delimiter=',')
+    print(segwit_url)
+    Table_segwit = pd.read_csv(segwit_url, header = None, skiprows = 1,
+                               sep = ',', names = ['id', 'transaction_count',
+                                                   'witness_count'])
     
     #%%
     Table_segwit['s_to_t_ratio'] = (Table_segwit['witness_count']/
-                Table_segwit['transaction_count'])
+                                    Table_segwit['transaction_count'])
     
     Table_segwit['ratio_144'] = Table_segwit['s_to_t_ratio'].rolling(
             144, min_periods = 1, center = True).mean()
-    
-    #%%
     
     sns.set(color_codes = "Dark")
     

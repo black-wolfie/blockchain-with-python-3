@@ -54,9 +54,15 @@ def main():
     
     # pivoting for block size in kB
     Table_SW_3 = Table_SW_2.pivot(index='Month', 
-                                          columns='Day', 
-                                          values='ratio')
-        
+                                  columns='Day', 
+                                  values='ratio')
+    
+    for i in range(n):
+        if Table_SW_3.index[i] != Table_SW_3.index[i+1] - 1:
+            Table_SW_3 = pd.concat((Table_SW_3.iloc[ (i+1):, :],
+                                    Table_SW_3.iloc[:(i+1),  :]), axis = 0)
+            break
+    
     Table_SW_3.index = [list(zip(Table_SW_3.index, All_months3))[x][1] 
                             for x in range(0,len(Table_SW_3))]
     

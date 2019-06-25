@@ -47,7 +47,11 @@ def main():
     
     # pivoting for block size in kB
     Table_BCH_4 = Table_BCH_3.pivot(index='Month', columns='Day', values='size_kB')
-    
+    for i in range(4):
+        if Table_BCH_4.index[i] != Table_BCH_4.index[i+1] - 1:
+            Table_BCH_4 = pd.concat((Table_BCH_4.iloc[ (i+1):, :],
+                                     Table_BCH_4.iloc[:(i+1),  :]), axis = 0)
+            break
     
     Table_BCH_4.index = [list(zip(Table_BCH_4.index, All_months3))[x][1] 
                          for x in range(0,len(Table_BCH_4))]
@@ -63,7 +67,11 @@ def main():
     # pivoting for mean transaction counts
     Table_BCH_5 = Table_BCH_3.pivot(index='Month', columns='Day', 
                                     values='transaction_count')
-    
+    for i in range(4):
+        if Table_BCH_5.index[i] != Table_BCH_5.index[i+1] - 1:
+            Table_BCH_5 = pd.concat((Table_BCH_5.iloc[ (i+1):, :],
+                                     Table_BCH_5.iloc[:(i+1),  :]), axis = 0)
+            break
 
     
     Table_BCH_5.index = [list(zip(Table_BCH_5.index,All_months3))[x][1] 
@@ -80,6 +88,11 @@ def main():
     Table_BCH_6 = Table_BCH_3.pivot(index='Month', columns='Day', 
                                     values='input_count')
     
+    for i in range(4):
+        if Table_BCH_6.index[i] != Table_BCH_6.index[i+1] - 1:
+            Table_BCH_6 = pd.concat((Table_BCH_6.iloc[ (i+1):, :],
+                                     Table_BCH_6.iloc[:(i+1),  :]), axis = 0)
+            break
     
     Table_BCH_6.index = [list(zip(Table_BCH_6.index,All_months3))[x][1] 
                          for x in range(0,len(Table_BCH_5))]

@@ -50,6 +50,11 @@ def main():
     # pivoting for block size in kB
     Table_BTC_4 = Table_BTC_3.pivot(index='Month', columns='Day', values='size_kB')
     
+    for i in range(4):
+        if Table_BTC_4.index[i] != Table_BTC_4.index[i+1] - 1:
+            Table_BTC_4 = pd.concat((Table_BTC_4.iloc[ (i+1):, :],
+                                     Table_BTC_4.iloc[:(i+1),  :]), axis = 0)
+            break
     
     Table_BTC_4.index = [list(zip(Table_BTC_4.index, All_months3))[x][1] 
                          for x in range(0,len(Table_BTC_4))]
@@ -66,7 +71,11 @@ def main():
     Table_BTC_5 = Table_BTC_3.pivot(index='Month', columns='Day', 
                                     values='transaction_count')
     
-
+    for i in range(4):
+        if Table_BTC_5.index[i] != Table_BTC_5.index[i+1] - 1:
+            Table_BTC_5 = pd.concat((Table_BTC_5.iloc[ (i+1):, :],
+                                     Table_BTC_5.iloc[:(i+1),  :]), axis = 0)
+            break
     
     Table_BTC_5.index = [list(zip(Table_BTC_5.index,All_months3))[x][1] 
                          for x in range(0,len(Table_BTC_5))]
@@ -82,6 +91,11 @@ def main():
     Table_BTC_6 = Table_BTC_3.pivot(index='Month', columns='Day', 
                                     values='input_count')
     
+    for i in range(4):
+        if Table_BTC_6.index[i] != Table_BTC_6.index[i+1] - 1:
+            Table_BTC_6 = pd.concat((Table_BTC_6.iloc[ (i+1):, :],
+                                     Table_BTC_6.iloc[:(i+1),  :]), axis = 0)
+            break
     
     Table_BTC_6.index = [list(zip(Table_BTC_6.index,All_months3))[x][1] 
                          for x in range(0,len(Table_BTC_5))]

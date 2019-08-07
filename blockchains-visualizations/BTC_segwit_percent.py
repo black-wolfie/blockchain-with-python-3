@@ -69,7 +69,7 @@ def main():
     sns.heatmap(Table_SW_3, annot=True, fmt='g', linewidths=0.2, 
                 ax = ax1, cmap="YlGnBu")
     
-    ax1.set_title('Segwit daily transaction percentage of all transactions')
+    ax1.set_title('Daily segwit txn percent')
     fig_SW_date.tight_layout()    
     
 #%%

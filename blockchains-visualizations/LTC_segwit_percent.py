@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jul 15 12:52:26 2018
+Created on Fri Aug  9 11:39:59 2019
 """
 # Tested on: Seaborn 0.9.0, Matplotlib 3.1.0
 import matplotlib.pyplot as plt
@@ -28,7 +28,7 @@ def main():
             24 + t_today.month - (n+1)
             )]
 
-    url_string_3 = ('https://api.blockchair.com/bitcoin/blocks?'+
+    url_string_3 = ('https://api.blockchair.com/litecoin/blocks?'+
                     'q=time('+str(t0)+'+00:00:00..)&'+
                     'fields=id,time,transaction_count,witness_count&export=csv')
     

@@ -24,7 +24,7 @@
 
 ![example plot 2](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_2.png?raw=true)
 
-## Example plot 3 (the ratio of segwit transactions) by ```BTC_heat_maps.py```:
+## Example plot 3 (the ratio of segwit transactions) by ```BTC_segwit_percent.py```:
 
 ![example plot 3](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_3.png?raw=true)
 

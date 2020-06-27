@@ -1,4 +1,4 @@
-## Python 3 visualization tools for different blockchains
+# Python 3 visualization tools for different blockchains
 
 * Note: currently, a ```future warning``` from ```scipy``` is present if you run the code. This should be updated in the future. You can read more about it [through here](https://github.com/mwaskom/seaborn/issues/1538)
 
@@ -16,10 +16,10 @@
 
 - ```LTC_bs_2.py``` Litecoin blockchain usage plots
 
-# Example plot 1 (general information) by ```BTC_bs.py```:
+## Example plot 1 (general information) by ```BTC_bs.py```:
 
 ![example plot 1](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_1.png?raw=true)
 
-# Example plot 2 (block weight and block size information) by ```BTC_bs.py```:
+## Example plot 2 (block weight and block size information) by ```BTC_bs.py```:
 
 ![example plot 2](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_2.png?raw=true)

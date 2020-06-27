@@ -15,3 +15,9 @@
 - ```ETH_bs.py```	Ethereum blockchain usage plots
 
 - ```LTC_bs_2.py``` Litecoin blockchain usage plots
+
+* Example plots by ```BTC_bs.py```:
+
+![example plot 1](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_1.png?raw=true)
+
+![example plot 2](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_2.png?raw=true)

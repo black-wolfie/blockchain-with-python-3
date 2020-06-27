@@ -16,8 +16,10 @@
 
 - ```LTC_bs_2.py``` Litecoin blockchain usage plots
 
-* Example plots by ```BTC_bs.py```:
+* Example plot 1 (general information) by ```BTC_bs.py``` *:
 
 ![example plot 1](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_1.png?raw=true)
+
+* Example plot 2 (block weight and block size information) by ```BTC_bs.py``` *:
 
 ![example plot 2](https://github.com/black-wolfie/blockchain-with-python-3/blob/master/blockchains-visualizations/example_2.png?raw=true)

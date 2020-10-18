@@ -183,7 +183,7 @@ def main():
                 order = mine_index)
     
     # Add in points to show each observation
-    sns.swarmplot(x = "weight_MB", y = "guessed_miner", data = Table_BTC_1,
+    sns.stripplot(x = "weight_MB", y = "guessed_miner", data = Table_BTC_1,
                   size=2, color=".3", linewidth=0, ax = ax_BTC_2[(0)],
                   order = mine_index)
     
@@ -202,7 +202,7 @@ def main():
                 order = mine_index)
     
     # Add in points to show each observation
-    sns.swarmplot(x = "size_MB", y = "guessed_miner", data = Table_BTC_1,
+    sns.stripplot(x = "size_MB", y = "guessed_miner", data = Table_BTC_1,
                   size=2, color=".3", linewidth=0, ax = ax_BTC_2[(1)],
                   order = mine_index)
     
